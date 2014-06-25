@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+           version="3.0">
+
+
+    <servlet>
+        <servlet-name>ListOfDepartment</servlet-name>
+        <servlet-class>com.ks.hr.fedpavel.servlets.ListOfDepartment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListOfDepartment</servlet-name>
+        <url-pattern>/elements/departments</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addDepartment</servlet-name>
+        <servlet-class>com.ks.hr.fedpavel.servlets.AddDepartment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addDepartment</servlet-name>
+        <url-pattern>/departments/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>com.ks.hr.fedpavel.servlets.Index</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addEmployee</servlet-name>
+        <servlet-class>com.ks.hr.fedpavel.servlets.AddEmployee</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addEmployee</servlet-name>
+        <url-pattern>/employees/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteEmployee</servlet-name>
+        <servlet-class>com.ks.hr.fedpavel.servlets.DeleteEmployee</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployee</servlet-name>
+        <url-pattern>/employees/deleteemployee</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <param-name>databaseURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/humanres?useUnicode=true&amp;characterEncoding=UTF-8</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>com.ks.hr.fedpavel.listeners.AppCxtListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>com.ks.hr.fedpavel.filters.EncodeFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
+    <security-constraint>
+        <display-name>Restrict access to JSP pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>
+                Restrict access to JSP pages
+            </web-resource-name>
+            <url-pattern>*.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>
+                Access denied
+            </description>
+        </auth-constraint>
+    </security-constraint>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404error.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/404error.jsp</location>
+    </error-page>
+
+</web-app>
