@@ -1,71 +1,59 @@
-JavaDepartmentsWebApp
+HumResJava
 =====================
 
-This is the first application for DA after learning Java at a DA Java School.
- 
-##Preparing DB
+Тестовое (домашнее) задание.
 
-###Creating DB
 
-Please use department.ddl.sql to create structure of DB.
-Please use department.dml.sql to fill in test data into DB.
+##База данных
 
-You can use *nix commands:
-$ mysql -udbuser -pdbpassword dbname < department.ddl.sql
-$ mysql -udbuser -pdbpassword dbname < department.dml.sql
+Дамп базы расположен в файле humanres.sql 
 
-##Configure application
 
-Need to configure access to DB. Please open web/WEB-INF/web.xml
+##Подключение к БД
 
-At line 17 you can see this code:
+Чтобы подключиться к БД необходимо в файле web/WEB-INF/web.xml прописать данные параметры c вашими значениями:
 
     <context-param>
         <param-name>dbUser</param-name>
-        <param-value>dbuser</param-value>
+        <param-value>root</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>dbuser</param-value>
+        <param-value>root</param-value>
     </context-param>
     <context-param>
         <param-name>dbURL</param-name>
         <param-value>jdbc:mysql://dbhost:3306/dbname?useUnicode=true&amp;characterEncoding=UTF-8</param-value>
     </context-param>
     
-Replace dbuser, dbpassword, dbhost, dbname in <param-value></param-value> tag to your correct values.
 
-##Build application
 
-To build application use command 
+##Сборка приложения
 
-    ant
+Для сборки приложения используейте Apache Ant(TM) version 1.8.2
+
     
-in application root dir.
+##Требования к окружению
 
-in dist/ folder you can find firstProject.war . Deploy this file to your Tomcat server.
+При разработке данного приложения использовались:
 
-##Software requirements
+* Tomcat  v.7.0.54
+* Java    v.1.7_60 (JEE)
+* Mysql   v.5.1
 
-This software is tested on Ubuntu desktop and Ubuntu server version >= 12.04.
-We hope it will work on any platform ;)
-
-* Tomcat  >= 7
-* Java    >= 1.7 (JEE)
-* Mysql   >= 5.5
-
-###Used java libraries 
+###Библиотеки
 
 * javax.servlet-api-3.1.0.jar
 * jstl-1.2.jar
 * mysql-connector-java-5.1.31-bin.jar
 
-##Known issues
+##Возможные проблемы, баги и недоработки 
 
-* There are no validations, there is a need to input correct data in appropriate formats
-* There is no validation for salary and corresponding positions
-* There are CSRF or XSS vulnerabilities
-* There is Employee delete function, it is using GET method instead POST
+* Отсутствие валидации, реализована простейшая валидация средствами HTML5 на клиенте.
+* Метод удаления сотрудника реализован "через одно место", а именно средстваими метода Get
+* Частично реализован показ списка должнстей (только Back-end часть)
+
+P.S. В связи с большой нагрузкой по работе, реализация задания стартовала всего за 4 дня до сдачи, поэтому заранее предостерегаю любопытного читателя сего творения не тешить себя большими надеждами и не надеятся на чудо.
 
 
 
